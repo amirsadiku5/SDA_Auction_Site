@@ -40,17 +40,17 @@
                 {% else %}Hello, {{ user.username }}!{% endif %}
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item text-right" href="{% url 'logout' %}">Logout</a>
-                <a class="dropdown-item text-right" href="{% url 'profile_view' user.pk %}">View Profile</a>
-                <a class="dropdown-item text-right" href="#">Change password</a>
+                <a class="dropdown-item text-right" href="{% url 'accounts:logout' %}">Logout</a>
+                <a class="dropdown-item text-right" href="{% url 'accounts:profile_view' user.pk %}">View Profile</a>
+                <a class="dropdown-item text-right" href="{% url 'accounts:change_password' %}">Change password</a>
               </div>
             {% else %}
               <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
                 You are not logged in.
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item text-right" href="{% url 'login' %}">Login</a>
-                <a class="dropdown-item text-right" href="{% url 'signup' %}">Sign Up</a>
+                <a class="dropdown-item text-right" href="{% url 'accounts:login' %}">Login</a>
+                <a class="dropdown-item text-right" href="{% url 'accounts:signup' %}">Sign Up</a>
               </div>
             {% endif %}
           </div>

@@ -1,17 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, TemplateView, DetailView
 # from accounts.forms import SignUpForm
 from accounts.forms import SignUpForm
 from accounts.models import Account
-
-
-class AccountListView(ListView):
-    template_name = "account_list.html"
-    model = Account
 
 
 class CustomLoginView(LoginView):
@@ -23,10 +18,6 @@ class CustomLoginView(LoginView):
                          "Login successful",
                          extra_tags="alert alert-success")
         return super().form_valid(form)
-
-
-class AuctionsView(ListView):
-    template_name = 'auctions.html'
 
 
 class IndexView(TemplateView):
@@ -49,3 +40,14 @@ class ProfileView(LoginRequiredMixin, DetailView):
             return super().get(request, *args, **kwargs)
         else:
             return redirect('logout')
+
+
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'form.html'
+    success_url = reverse_lazy('auctions')
+
+    def form_valid(self, form):
+        messages.success(request=self.request,
+                         message="Password changed successfully!",
+                         extra_tags="alert alert-success")
+        return super(ChangePasswordView, self).form_valid(form)
