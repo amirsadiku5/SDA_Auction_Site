@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your profile information:</h1>
+<h3>Avatar:</h3>
+<img src="{{ account.avatar.url }}" alt="Avatar of {{ account.user.username }}" style="max-width : 150px">
+<h3>Username:</h3>
+<p>{{ account.user.username }}</p>
+<h3>First Name:</h3>
+<p>{{ account.user.first_name }}</p>
+<h3>Last Name:</h3>
+<p>{{ account.user.last_name }}</p>
+{% endblock %}
