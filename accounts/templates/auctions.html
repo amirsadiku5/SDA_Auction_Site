@@ -1,16 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <h1 style="text-align: center">AUCTIONS</h1>
-
 <h1 style="text-align: center">Welcome to Auctions!</h1>
-<!---
-<ul>
-    {% for auction in object_list %}
-      <li>
-        {{ auction.title }}
-          <a href="">Auction</a>
-      </li>
-    {% endfor %}
-</ul>
---->
+<img src="{% static 'img/auction.jpg' %}" class="category-img" alt="Auction">
 {% endblock %}
