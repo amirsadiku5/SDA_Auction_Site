@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="padding-bottom: 20px">Auction Items</h1>
+<ul>
+    <div class="row">
+    {% for auction in object_list %}
+        <div class="col-md-4">
+            <a href="{% url 'auctions:auction_details' auction.pk %}">
+              <img src={{ auction.photo.url }} alt="{{ auction.title }}" class="category-img">
+                <h2 class="h2">{{ auction.title }}</h2>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</ul>
+{% endblock %}

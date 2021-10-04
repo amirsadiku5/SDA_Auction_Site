@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="padding-bottom: 20px;text-align: center">Auction Categories</h1>
+<ul>
+    <div class="row">
+    {% for category in object_list %}
+        <div class="col-md-4">
+            <a href="{% url 'auctions:auctions' category.pk  %}">
+              <img src={{ category.logo.url }} alt="{{ category.name }}" class="category-img">
+                <h2 class="h2">{{ category.name }}</h2>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</ul>
+{% endblock %}

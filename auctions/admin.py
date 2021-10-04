@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import AuctionCategory, Auction
 
-# Register your models here.
+admin.site.register(AuctionCategory)
+admin.site.register(Auction)

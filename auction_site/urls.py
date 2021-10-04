@@ -24,6 +24,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    path('auctions/', include('auctions.urls')),
 ]
 
 if settings.DEBUG:

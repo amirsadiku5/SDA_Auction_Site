@@ -39,7 +39,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
             self.extra_context = {"account": Account.objects.get(user=self.request.user)}
             return super().get(request, *args, **kwargs)
         else:
-            return redirect('logout')
+            return redirect('accounts:logout')
 
 
 class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
