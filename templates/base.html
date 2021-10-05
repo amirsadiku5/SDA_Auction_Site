@@ -40,6 +40,9 @@
           <a class="nav.item nav-link active" href="{% url 'auctions:user_auctions' user.pk %}">
             My Auctions
           </a>
+          <a class="nav.item nav-link active" href="{% url 'add_auction:add_auction' %}">
+            Add Auctions
+          </a>
           {% endif %}
           <div class="nav-item dropdown">
             {% if user.is_authenticated %}

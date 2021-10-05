@@ -4,7 +4,7 @@
 <ul>
     <div class="row">
     {% for category in object_list %}
-        <div class="col-md-4">
+        <div class="col-md-4 justify-content-center align-self-center">
             <a href="{% url 'auctions:auctions' category.pk  %}">
               <img src={{ category.logo.url }} alt="{{ category.name }}" class="category-img">
                 <h2 class="h2">{{ category.name }}</h2>

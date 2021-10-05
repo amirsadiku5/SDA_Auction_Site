@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('auctions/', include('auctions.urls')),
+    path('add_auctions/', include('add_auction.urls')),
 ]
 
 if settings.DEBUG:
