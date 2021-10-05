@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.models import User
+from accounts.models import Account
 from auctions.models import AuctionCategory, Auction
 
 
@@ -22,3 +24,12 @@ class AuctionListView(ListView):
 class AuctionDetailView(DetailView):
     model = Auction
     template_name = 'auctions/item_details.html'
+
+
+def user_auctions(request, user_pk):
+    user = User.objects.get(pk=user_pk)
+    if not Account.objects.filter(user=user).exists():
+        return redirect('accounts:logout')
+    account = Account.objects.get(user=user)
+    auctions = Auction.objects.filter(owner=account)
+    return render(request, template_name='auctions/user_items.html', context={"auctions": auctions})
