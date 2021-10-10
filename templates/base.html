@@ -52,7 +52,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item text-right" href="{% url 'accounts:logout' %}">Logout</a>
-                <a class="dropdown-item text-right" href="{% url 'accounts:profile_view' user.pk %}">View Profile</a>
+                <a class="dropdown-item text-right" href="{% url 'accounts:profile_view' %}">View Profile</a>
                 <a class="dropdown-item text-right" href="{% url 'accounts:change_password' %}">Change password</a>
               </div>
             {% else %}

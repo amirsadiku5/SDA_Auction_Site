@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, redirect
@@ -27,19 +28,16 @@ class IndexView(TemplateView):
 class SignUpView(CreateView):
     template_name = 'form.html'
     form_class = SignUpForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('accounts:login')
 
 
-class ProfileView(LoginRequiredMixin, DetailView):
-    model = Account
-    template_name = 'accounts/profile_view.html'
-
-    def get(self, request, *args, **kwargs):
-        if Account.objects.filter(user=self.request.user).exists():
-            self.extra_context = {"account": Account.objects.get(user=self.request.user)}
-            return super().get(request, *args, **kwargs)
-        else:
-            return redirect('accounts:logout')
+@login_required
+def profile_view(request):
+    if Account.objects.filter(user=request.user).exists():
+        extra_context = {"account": Account.objects.get(user=request.user)}
+        return render(request, template_name="accounts/profile_view.html", context=extra_context)
+    else:
+        return redirect('accounts:logout')
 
 
 class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):

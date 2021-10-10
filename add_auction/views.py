@@ -16,7 +16,7 @@ class AddAuction(CreateView):
     template_name = "add_auction.html"
     form_class = AuctionForm
     success_url = reverse_lazy('user_auctions')
-    permission_required = 'auction.add_auction'
+    permission_required = 'auctions.add_auction'
 
     def form_valid(self, form):
         messages.success(request=self.request,
