@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'auctions',
     'add_auction',
+    'bid_buy',
 ]
 
 MIDDLEWARE = [
