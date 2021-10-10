@@ -26,10 +26,9 @@ class AuctionDetailView(DetailView):
     template_name = 'auctions/item_details.html'
 
 
-def user_auctions(request, user_pk):
-    user = User.objects.get(pk=user_pk)
-    if not Account.objects.filter(user=user).exists():
+def user_auctions(request):
+    if not Account.objects.filter(user=request.user).exists():
         return redirect('accounts:logout')
-    account = Account.objects.get(user=user)
+    account = Account.objects.get(user=request.user)
     auctions = Auction.objects.filter(owner=account)
     return render(request, template_name='auctions/user_items.html', context={"auctions": auctions})

@@ -33,12 +33,7 @@ class PastDateField(DateField):
 class AuctionForm(ModelForm):
     class Meta:
         model = Auction
-        fields = "__all__"
-
-    # Override the fiels we want to costumize
-    # title = CharField(max_length=128, validators=[capitalize_validator])
-    # rating = IntegerField(min_value=1, max_value=10)
-    # released = PastDateField()
+        exclude = ('owner', 'visits_number')
 
     def clean_description(self):
         # Start with capital letter
@@ -46,16 +41,3 @@ class AuctionForm(ModelForm):
         sentences = re.sub(r'\s*\.\s*', '.', initial).split('.')
         return '. '.join(sentence.capitalize() for sentence in sentences)
 
-    # def clean(self):
-    #     result = super().clean()
-    #     if result["genre"].name == "Horror" and result["rating"] > 6:
-    #         self.add_error("genre", "The genre is horror")
-    #         self.add_error("rating", "The rating is bigger than 6")
-    #         raise ValidationError("Horror movies aren't supposed to be rated over 6")
-    #         # result["rating"] = 6
-    #     return result
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
