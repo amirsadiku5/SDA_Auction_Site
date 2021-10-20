@@ -40,6 +40,9 @@
           <a class="nav.item nav-link active" href="{% url 'auctions:user_auctions' %}">
             My Auctions
           </a>
+          <a class="nav.item nav-link active" href="{% url 'bid_buy:purchased' %}">
+            Purchased
+          </a>
           <a class="nav.item nav-link active" href="{% url 'add_auction:add_auction' %}">
             Add Auctions
           </a>
@@ -49,6 +52,9 @@
               <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
                 {% if user.first_name %}Hello, {{ user.first_name }}!
                 {% else %}Hello, {{ user.username }}!{% endif %}
+                {% if user.account %}
+                Credit: {{ user.account.credit }}
+                {% endif %}
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item text-right" href="{% url 'accounts:logout' %}">Logout</a>
@@ -70,12 +76,13 @@
     </nav>
     <div class="container">
       <div class="jumbotron">
-        {% block content %}{% endblock %}
         {% for message in messages %}
           <p{% if message.tags %} class="{{message.tags}}" {% endif %}>
             {{ message }}
           </p>
-          {% endfor %}
+        {% endfor %}
+        {% block content %}{% endblock %}
+
       </div>
     </div>
   </body>

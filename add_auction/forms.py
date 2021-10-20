@@ -33,7 +33,7 @@ class PastDateField(DateField):
 class AuctionForm(ModelForm):
     class Meta:
         model = Auction
-        exclude = ('owner', 'visits_number')
+        exclude = ('auction_status', 'owner', 'visits_number')
 
     def clean_description(self):
         # Start with capital letter

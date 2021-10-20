@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="padding-bottom: 20px">Purchased</h1>
+<table class="table">
+    <thead>
+        <tr scope="row">
+          <th>Item</th>
+          <th>Category</th>
+          <th>Buying Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for purch in purchases %}
+        <tr>
+            <td><a href="{% url 'bid_buy:auction_purchase' purch.bid.pk %}">{{ purch.bid.item.title }}</a></td>
+            <td><a href="{% url 'auctions:auctions' purch.bid.item.category.pk %}">{{ purch.bid.item.category.name }}</a></td>
+            <td>{{ purch.bid.amount_to_pay }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

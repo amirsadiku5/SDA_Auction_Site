@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Purchase Summary:</h1>
+<div style="padding-top:60px" class="row">
+    <div class="col-md-4">
+        <img src={{ auction.photo.url }} alt="{{ auction.title }}" class="category-img">
+        <h2 class="h2">{{ auction.title }}</h2>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th colspan="2" style="text-align:center;font-size:20px">Product Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Title</th>
+              <td>{{ auction.title}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Category</th>
+              <td>{{ auction.category}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Description</th>
+              <td>{{ auction.description}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Location</th>
+              <td>Unknown</td>
+            </tr>
+            <tr>
+              <th scope="row">Purchase price</th>
+              <td>{{ purchase_price }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

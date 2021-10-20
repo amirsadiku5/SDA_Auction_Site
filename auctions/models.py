@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models import CharField, TextField, ImageField, DecimalField, DateField
-
+from django.db.models import CharField, TextField, ImageField, DecimalField, DateTimeField
 from accounts.models import Account
 
 
@@ -26,10 +25,20 @@ class Auction(models.Model):
     buy_now_price = DecimalField(max_digits=8, decimal_places=2)
     # promoted_status =
     # location =
-    auction_start = DateField()
-    auction_end = DateField()
+    auction_start = DateTimeField()
+    auction_end = DateTimeField()
     visits_number = models.IntegerField(default=0)
+    TYPES = (
+        ("STA", "Auction Started"),
+        ("EXP", "Auction Expired"),
+        ("PUR", "Item Purchased")
+    )
+    auction_status = CharField(
+        max_length=3,
+        choices=TYPES,
+        default="STA"
+    )
 
     def __str__(self):
         return f"{self.title} | {self.category} | Minimal Price: {self.minimal_price} " \
-               f"| Minimal Price: {self.buy_now_price}"
+               f"| Buy Now Price: {self.buy_now_price}"

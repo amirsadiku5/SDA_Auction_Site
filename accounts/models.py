@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.validators import EmailValidator
 from django.db import models
-from django.db.models import OneToOneField, Model, CASCADE, ImageField, CharField, DateField
+from django.db.models import OneToOneField, Model, CASCADE, ImageField, CharField, DateField, DecimalField
 
 
 class Account(Model):
@@ -34,6 +34,7 @@ class Account(Model):
         default="NRM"
     )
     avatar = ImageField(upload_to="images/")
+    credit = DecimalField(max_digits=8, decimal_places=2, default=100)
 
     def __str__(self):
         return f"{self.user} Profile-{self.pk}={self.user.pk}"

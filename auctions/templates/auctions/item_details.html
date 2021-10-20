@@ -49,10 +49,18 @@
               <th scope="row">Visitors</th>
               <td>{{ auction.visits_number }}</td>
             </tr>
+            <tr>
+              <th scope="row">Current highest bid</th>
+              <td>{{ highest_bid }}</td>
+            </tr>
           </tbody>
         </table>
-       <button type="button" class="btn btn-success btn-block">BID</button>
-       <button type="button" class="btn btn-danger btn-block">BUY NOW</button>
+        {% if user.account != auction.owner and auction.auction_status == "STA" %}
+        {% block bid %}
+          {% include 'bid_buy/bid.html' with pk=auction.pk form=bid_form %}
+          {% include 'bid_buy/buy_now.html' with pk=auction.pk %}
+        {% endblock %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}
